@@ -1,0 +1,23 @@
+node_modules
+dist
+dist-ssr
+*.local
+# Node
+node_modules/
+
+# Build
+dist/
+build/
+
+# Logs
+npm-debug.log*
+
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

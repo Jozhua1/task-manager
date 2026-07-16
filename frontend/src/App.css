@@ -1,0 +1,349 @@
+:root {
+  --border: #e4e7eb;
+  --border-light: #edf0f2;
+  --text: #172b4d;
+  --text-muted: #6b778c;
+  --text-faint: #97a0af;
+  --accent: #0052cc;
+  --accent-hover: #0747a6;
+  --danger: #de350b;
+  --success: #00875a;
+  --surface: #ffffff;
+  --surface-subtle: #f7f8f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+}
+
+.app-header {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.app-header h1 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.83rem;
+  margin: 0;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Top toolbar: search + filters, like the reference image's search/filter row */
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.83rem;
+  color: var(--text);
+  background: var(--surface-subtle);
+}
+
+.search-bar::placeholder {
+  color: var(--text-faint);
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.filter-btn {
+  border: 1px solid var(--border);
+  background: var(--surface-subtle);
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.filter-btn:hover {
+  background: #ebecf0;
+  color: var(--text);
+}
+
+.filter-btn.active {
+  background: #deebff;
+  border-color: #deebff;
+  color: var(--accent);
+}
+
+/* Task Form — styled as a slim inline row rather than a boxed card */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.task-form-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-form input[type='text'] {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: var(--surface-subtle);
+}
+
+.task-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.task-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0 0.9rem;
+  border-radius: 4px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.task-form button:hover {
+  background: var(--accent-hover);
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+.api-error {
+  background: #ffebe6;
+  border: 1px solid #ffbdad;
+  color: var(--danger);
+  font-size: 0.83rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0.6rem 0.85rem 0;
+}
+
+/* Task list — flat rows with thin dividers, no card shadows, like a table */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: var(--surface);
+  border: none;
+  border-bottom: 1px solid var(--border-light);
+  border-radius: 0;
+  padding: 0.6rem 0.85rem;
+  transition: background 0.1s ease;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item:hover {
+  background: var(--surface-subtle);
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-faint);
+}
+
+.task-item.completed .task-description {
+  color: var(--text-faint);
+}
+
+.task-checkbox-label {
+  padding-top: 0.15rem;
+}
+
+.task-checkbox-label input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.task-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.88rem;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.task-description {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+/* Row actions stay hidden until hover, like Jira's row-hover icon buttons */
+.task-item-actions {
+  display: flex;
+  gap: 0.2rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.task-item:hover .task-item-actions,
+.task-item.editing .task-item-actions {
+  opacity: 1;
+}
+
+.task-item-actions button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.76rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.btn-edit {
+  color: var(--text-muted);
+}
+.btn-edit:hover {
+  background: #ebecf0;
+  color: var(--text);
+}
+
+.btn-delete {
+  color: var(--text-muted);
+}
+.btn-delete:hover {
+  background: #ffebe6;
+  color: var(--danger);
+}
+
+.btn-save {
+  color: #fff;
+  background: var(--success) !important;
+}
+.btn-save:hover {
+  background: #006644 !important;
+}
+
+.btn-cancel {
+  color: var(--text-muted);
+  background: var(--surface-subtle) !important;
+}
+.btn-cancel:hover {
+  background: #ebecf0 !important;
+}
+
+/* Editing state */
+.task-item.editing {
+  flex-direction: column;
+  background: var(--surface-subtle);
+}
+
+.task-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.task-edit-form input {
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: var(--surface);
+}
+
+.task-edit-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.task-edit-form .task-item-actions {
+  justify-content: flex-end;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  color: var(--text-faint);
+  padding: 2rem 0;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  .task-form-row {
+    flex-direction: column;
+  }
+  .task-form button {
+    padding: 0.55rem;
+  }
+  .task-item-actions {
+    opacity: 1;
+  }
+}
