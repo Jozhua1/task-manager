@@ -1,156 +1,126 @@
 # Task Manager
 
-A fullstack task management app built with **React + Vite** (frontend) and **Express + Node.js + PostgreSQL** (backend).
-
----
+A full-stack Task Management application built with **React + Vite**, **Express.js**, and **PostgreSQL**.
 
 ## Features
 
-- Add a task (title + optional description)
-- Mark a task complete / incomplete
-- Edit a task's title and description inline
-- Delete a task
-- Search tasks by name (case-insensitive)
-- Filter tasks by **All / Active / Completed**
-- Search and filter work together
+- Create, edit, and delete tasks
+- Mark tasks as complete/incomplete
+- Search tasks by title
+- Filter tasks (All, Active, Completed)
 
 ---
 
 ## Tech Stack
 
-| Layer    | Tech                        |
-|----------|-----------------------------|
-| Frontend | React 19, Vite              |
-| Backend  | Express 4, Node.js          |
-| Database | PostgreSQL 16               |
-| DB lib   | `pg` (node-postgres)        |
+- React + Vite
+- Express.js
+- Node.js
+- PostgreSQL
 
 ---
 
-## Prerequisites
+# Screenshots
 
-- Node.js 18+
-- PostgreSQL 14+ running locally (or update `.env` to point at a remote instance)
+### Home Page
+
+> *(Insert screenshot here)*
+
+### Search & Filter
+
+> *(Insert screenshot here)*
+
+### Edit Task
+
+> *(Insert screenshot here)*
 
 ---
 
-## Setup
+# Setup
 
-### 1. Database
+## 1. Clone the repository
 
-Create a PostgreSQL database and user:
+```bash
+git clone <your-repository-url>
+cd task-manager
+```
+
+## 2. Create the PostgreSQL database
 
 ```sql
-CREATE USER taskuser WITH PASSWORD 'taskpass';
-CREATE DATABASE taskdb OWNER taskuser;
-GRANT ALL PRIVILEGES ON DATABASE taskdb TO taskuser;
+CREATE DATABASE taskdb;
 ```
 
-> The backend runs the table migration automatically on startup — no manual SQL needed.
-
----
-
-### 2. Backend
+Import the schema:
 
 ```bash
-cd backend
-npm install
+psql -U postgres -d taskdb -f database/schema.sql
 ```
 
-Copy and edit the environment file if needed:
+## 3. Configure the backend
 
-```bash
-# backend/.env (already included — edit if your DB credentials differ)
+Create a `.env` file inside the `backend` folder.
+
+```env
 PORT=4000
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=taskdb
-DB_USER=taskuser
-DB_PASSWORD=taskpass
+DB_USER=your_username
+DB_PASSWORD=your_password
 ```
 
-Start the server:
+Install dependencies and start the backend:
 
 ```bash
-npm start          # production
-npm run dev        # development (auto-restarts on file changes, Node 18+)
+cd backend
+npm install
+npm start
 ```
 
-The API will be available at `http://localhost:4000`.
+## 4. Configure the frontend
 
----
-
-### 3. Frontend
+Open a new terminal.
 
 ```bash
 cd frontend
 npm install
 ```
 
-Edit `frontend/.env` if your backend runs on a different port:
+Create a `.env` file:
 
-```bash
+```env
 VITE_API_URL=http://localhost:4000/api
 ```
 
-Start the dev server:
+Start the frontend:
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Open:
 
----
-
-## API Endpoints
-
-| Method | Endpoint                  | Description                          |
-|--------|---------------------------|--------------------------------------|
-| GET    | `/api/tasks`              | List tasks (supports `?search=&status=`) |
-| GET    | `/api/tasks/:id`          | Get a single task                    |
-| POST   | `/api/tasks`              | Create a task                        |
-| PUT    | `/api/tasks/:id`          | Update title / description / completed |
-| PATCH  | `/api/tasks/:id/toggle`   | Flip completed state                 |
-| DELETE | `/api/tasks/:id`          | Delete a task                        |
-| GET    | `/api/health`             | Health check                         |
-
-### Query parameters for `GET /api/tasks`
-
-| Param    | Values                        | Description           |
-|----------|-------------------------------|-----------------------|
-| `search` | any string                    | Filter by title (ILIKE) |
-| `status` | `all` \| `active` \| `completed` | Filter by completion status |
+```
+http://localhost:5173
+```
 
 ---
 
 ## Project Structure
 
-```
+```text
 task-manager/
 ├── backend/
-│   ├── src/
-│   │   ├── db.js          # PostgreSQL pool
-│   │   ├── migrate.js     # Table creation on startup
-│   │   ├── taskModel.js   # All SQL queries
-│   │   ├── taskRoutes.js  # Express route handlers
-│   │   ├── app.js         # Express app setup
-│   │   └── server.js      # Entry point
-│   ├── .env
-│   └── package.json
-│
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── TaskForm.jsx     # Add-task form
-    │   │   ├── TaskList.jsx     # Renders the list
-    │   │   ├── TaskItem.jsx     # Single task row (view + edit)
-    │   │   ├── SearchBar.jsx    # Search input
-    │   │   └── FilterBar.jsx    # All / Active / Completed
-    │   ├── api.js           # All fetch calls (service layer)
-    │   ├── App.jsx          # Root component and state
-    │   ├── App.css          # Styles
-    │   └── main.jsx         # React entry point
-    ├── .env
-    └── package.json
+├── frontend/
+├── database/
+│   └── schema.sql
+├── .gitignore
+└── README.md
 ```
+
+---
+
+## Author
+
+**Joshua Escalona**
