@@ -20,28 +20,20 @@ A full-stack Task Management application built with **React + Vite**, **Express.
 
 ---
 
-# Screenshots
+# Video demo
 
-### Home Page
 
-> *(Insert screenshot here)*
 
-### Search & Filter
+https://github.com/user-attachments/assets/b348a275-12c8-49f0-9b16-a6787329778d
 
-> *(Insert screenshot here)*
 
-### Edit Task
-
-> *(Insert screenshot here)*
-
----
 
 # Setup
 
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Jozhua1/task-manager.git
 cd task-manager
 ```
 
